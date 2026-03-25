@@ -1,248 +1,190 @@
 /*
-CREATED BY : YAGNESH VAGHASHIYA
-CREATION DATE: 26/02/2026
-DESCRIPTION: THIS IS THE STRUCTURE OF A BASIC QUERY
-*/
-</sql><sql name="SQL 2">/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS ALL CUSTOMERS FIRST,LAST AND EMAIL Address
 */
 SELECT 
-FirstName AS [Customer FirstName],
-LastName AS [Customer LastName],
-Email AS EMAIL
+	FirstName AS [Customer FirstName],
+	LastName AS [Customer LastName],
+	Email AS EMAIL
 FROM 
-Customer
+	Customer
 ORDER BY
-FirstName ASC,
-LastName DESC
-LIMIT 10</sql><sql name="SQL 3">-- How many customers purchased two songs at $0.99 each?
+	FirstName ASC,
+	LastName DESC
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS THE CUSTOMERS WHO PURCHASED TWO SONGS AT $0.99 EACH
 */
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total 
 FROM
-Invoice
-
+	Invoice
 WHERE 
-total = 1.98
-
+	total = 1.98
 ORDER BY
- InvoiceDate ASC
-</sql><sql name="SQL 4">-- How many Invoices exist between $1.98 and $5.00?
+ 	InvoiceDate ASC
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS THE Invoices exist between $1.98 and $5.00
 */
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-total BETWEEN 1.98 AND 5.00
-
+	total BETWEEN 1.98 AND 5.00
 ORDER BY
- InvoiceDate ASC
-</sql><sql name="SQL 5">-- How many Invoices do we have that are exactly $1.98 or $3.96?
+ 	InvoiceDate ASC
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES THAT ARE EXACTLY $1.98 OR $3.96
 */
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-total IN(1.98,3.96)
-
+	total IN(1.98,3.96)
 ORDER BY
- InvoiceDate 
-</sql><sql name="SQL 6">-- How many Invoices were billed to a Brussels?
+ 	InvoiceDate 
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH ARE BILLED TO BRUSSELS
 */
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-BillingCity = 'Brussels'
-
+	BillingCity = 'Brussels'
 ORDER BY
- InvoiceDate 
-</sql><sql name="SQL 7">-- How many Invoices were billed to a Brussels,Orlando and Paris?
+ 	InvoiceDate 
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH ARE BILLED TO BRUSSELS,Orlando and Paris
 */
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-BillingCity IN ('Brussels','Orlando','Paris')
-
+	BillingCity IN ('Brussels','Orlando','Paris')
 ORDER BY
- InvoiceDate 
-</sql><sql name="SQL 8">-- How many Invoices were billed in cities that start with B?
+ 	InvoiceDate 
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH ARE BILLED IN CITIES THAT START WITH B
 */
-
---% I DON'T CARE WHAT COME NEXT
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-BillingCity LIKE'B%'
-
+	BillingCity LIKE'B%'
 ORDER BY
- InvoiceDate 
-</sql><sql name="SQL 9">-- How many Invoices were billed on 2010-05-22 00:00:00?
+ 	InvoiceDate 
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
-DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH WERE BILLED ON 2010-05-22 00:00:00 */
-
---% I DON'T CARE WHAT COME NEXT
+DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH WERE BILLED ON 2010-05-22 00:00:00
+*/
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-DATE(InvoiceDate)='2010-05-22'
-
+	DATE(InvoiceDate)='2010-05-22'
 ORDER BY
- InvoiceDate 
-</sql><sql name="SQL 10">-- Get all invoices were made after 2010-05-22 and have a total of less than 3.00?
+ 	InvoiceDate 
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH WERE MADE AFTER 2010-05-22 AND HAVE A TOTAL OF LESS THAN 3.00
 */
---% I DON'T CARE WHAT COME NEXT
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-DATE(InvoiceDate)&gt;'2010-05-22' AND total&lt;3.00
-
+	DATE(InvoiceDate)&gt;'2010-05-22' AND total&lt;3.00
 ORDER BY
- InvoiceDate 
-</sql><sql name="SQL 11">-- Get all invoices which BillingCity is start with P or start with D?
+ 	InvoiceDate 
 
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
 DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH BillingCity is start with P or start with D?
-
 */
---% I DON'T CARE WHAT COME NEXT
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-BillingCity like 'P%' OR BillingCity like 'D%'\]\
-
+	BillingCity like 'P%' OR BillingCity like 'D%'
 ORDER BY
- InvoiceDate 
-</sql><sql name="SQL 12">-- Get all invoices that are greater than 1.98 from any cities whose name start with P or start with D?
+	InvoiceDate 
+
 /*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATE DATE: 26/02/2026
-DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH ARE GREATER THAN 1.98 FROM ANY CITIES WHOSE NAME START WITH P OR START WITH D*/
-
+DESCRIPTION: THIS QUERY DISPLAYS THE INVOICES WHICH ARE GREATER THAN 1.98 FROM ANY CITIES WHOSE NAME START WITH P OR START WITH D
+*/
 --PEMDAS: Parenthesis, Exponents, Multiplication/Division, Addition/Substraction
 --BEMDAS: Brackets, Exponents, Multiplication/Division, Addition/Substraction
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total
- 
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total
 FROM
-Invoice
-
+	Invoice
 WHERE 
-TOTAL &gt;1.98 AND (BillingCity like 'P%' OR BillingCity like 'D%')
-
+	TOTAL>1.98 AND (BillingCity like 'P%' OR BillingCity like 'D%')
 ORDER BY
- InvoiceDate 
-</sql><sql name="SQL 13">/*
+ 	InvoiceDate 
+
 WSDA Music Sales Goal
 They want as many customers as possible to spend between $7.00 and $15.00
 
