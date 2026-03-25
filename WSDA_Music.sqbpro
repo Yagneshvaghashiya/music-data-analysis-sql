@@ -145,7 +145,7 @@ SELECT
 FROM
 	Invoice
 WHERE 
-	DATE(InvoiceDate)&gt;'2010-05-22' AND total&lt;3.00
+	DATE(InvoiceDate)>'2010-05-22' AND total<3.00
 ORDER BY
  	InvoiceDate 
 
@@ -185,6 +185,7 @@ WHERE
 ORDER BY
  	InvoiceDate 
 
+/*
 WSDA Music Sales Goal
 They want as many customers as possible to spend between $7.00 and $15.00
 
@@ -194,23 +195,23 @@ Low Purchase - Between $2.00 and $6.99
 Target Purchase - Between $7.00 and $15.00
 Top Performer - Above $15.00
 */
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total,
- CASE
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total,
+CASE
 	WHEN total &lt; 2.00 THEN 'Baseline Purchase'
 	WHEN total BETWEEN 2.00 AND 6.99 THEN 'Low Purchase'
 	WHEN total BETWEEN 7.00 AND 15.00 THEN 'Target Purchase'
 	Else'Top Performer'
 	END AS PurchaseType 
 FROM
- Invoice
+ 	Invoice
 ORDER BY
- BillingCity
-</sql><sql name="SQL 14">/*
+ 	BillingCity
+
+/*
 WSDA Music Sales Goal
 They want know from which cities do their top performing sales come from? 
 
@@ -220,30 +221,29 @@ Low Purchase - Between $2.00 and $6.99
 Target Purchase - Between $7.00 and $15.00
 Top Performer - Above $15.00
 */
-
 SELECT
- InvoiceDate,
- BillingAddress,
- BillingCity,
- total,
- CASE
-	WHEN total &lt; 2.00 THEN 'Baseline Purchase'
+ 	InvoiceDate,
+ 	BillingAddress,
+ 	BillingCity,
+ 	total,
+CASE
+	WHEN total < 2.00 THEN 'Baseline Purchase'
 	WHEN total BETWEEN 2.00 AND 6.99 THEN 'Low Purchase'
 	WHEN total BETWEEN 7.00 AND 15.00 THEN 'Target Purchase'
 	Else'Top Performer'
 	END AS PurchaseType 
 FROM
- Invoice
+ 	Invoice
 WHERE
- PurchaseType ='Top Performer' 
+	PurchaseType ='Top Performer' 
 ORDER BY
- BillingCity
-</sql><sql name="SQL 15">/*
+ 	BillingCity
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 28/02/2026
 DESCRIPTION : JOIN
 */
-
 SELECT
 *
 FROM 
@@ -253,12 +253,13 @@ INNER JOIN
 ON
 	i.CustomerId = c.CustomerId
 ORDER BY
-	c.CustomerId </sql><sql name="SQL 16">/*
+	c.CustomerId 
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 28/02/2026
 DESCRIPTION : list all of the customers together with their associated invoices 
 */
-
 SELECT
 	c.LastName,
 	c.FirstName,
@@ -266,7 +267,6 @@ SELECT
 	i.CustomerId,
 	i.InvoiceDate,
 	i.total
-
 FROM 
 	Invoice AS i
 INNER JOIN
@@ -274,7 +274,9 @@ INNER JOIN
 ON
 	i.CustomerId = c.CustomerId
 ORDER BY
-	c.CustomerId </sql><sql name="SQL 17">/*
+	c.CustomerId 
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 28/02/2026
 DESCRIPTIONS: JOINS on more than two tables | What employees are responsible for the 10 highest individual sales?
@@ -300,12 +302,12 @@ ON
 	c.SupportRepId = e.EmployeeId
 ORDER BY
 	i.total DESC
-LIMIT 10</sql><sql name="SQL 18">/*
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: CREATE A MAILING LIST OF US CUSTOMERS
 */
-
 SELECT
 	FirstName,
 	LastName,
@@ -315,12 +317,12 @@ FROM
 	Customer
 WHERE
 	Country ='USA'
-</sql><sql name="SQL 19">/*
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: CREATE A MAILING LIST OF US CUSTOMERS
 */
-
 SELECT
 	FirstName,
 	LastName,
@@ -332,12 +334,12 @@ FROM
 	Customer
 WHERE
 	Country ='USA'
-</sql><sql name="SQL 20">/*
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: CREATE A MAILING LIST OF US CUSTOMERS
 */
-
 SELECT
 	FirstName,
 	LastName,
@@ -351,12 +353,12 @@ FROM
 	Customer
 WHERE
 	Country ='USA'
-</sql><sql name="SQL 21">/*
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Calculate the ages of all  Employee
 */
-
 SELECT
 	FirstName,
 	LastName,
@@ -364,12 +366,13 @@ SELECT
 	strftime('%Y-%m-%d',Birthdate) AS [BirthDate No Timecode],
 	strftime('%Y-%m-%d','Now') - strftime('%Y-%m-%d',Birthdate) AS Age
 FROM 
-	Employee</sql><sql name="SQL 22">/*
+	Employee
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Aggeregate Functions |What are our all time global sales?
 */
-
 SELECT
 	Sum(Total)AS[TotalSales],
 	AVG(Total)AS[AverageSales],
@@ -378,12 +381,12 @@ SELECT
 	COUNT(*)AS[SalesCount]
 FROM
 	Invoice
-</sql><sql name="SQL 23">/*
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: NestingFunctions
 */
-
 SELECT
 	Sum(Total)AS[TotalSales],
 	round( AVG(Total),2)AS[AverageSales],
@@ -392,12 +395,12 @@ SELECT
 	COUNT(*)AS[SalesCount]
 FROM
 	Invoice
-</sql><sql name="SQL 24">/*
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Grouping in SQL |What are the average Invoice totals by city?
 */
-
 SELECT
 	BillingCity,
 	round(avg(total),2)
@@ -406,12 +409,13 @@ FROM
 GROUP BY
 	BillingCity
 ORDER BY
-	BillingCity</sql><sql name="SQL 25">/*
+	BillingCity
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Grouping in SQL |What are the average Invoice totals by city for only that start with L?
 */
-
 SELECT
 	BillingCity,
 	round(avg(total),2)
@@ -422,12 +426,13 @@ WHERE
 GROUP BY
 	BillingCity
 ORDER BY
-	BillingCity</sql><sql name="SQL 26">/*
+	BillingCity
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Grouping in SQL |What are the average Invoice totals Greater than $5.00?
 */
-
 SELECT
 	BillingCity,
 	round(avg(total),2)
@@ -436,14 +441,15 @@ FROM
 GROUP BY
 	BillingCity
 HAVING
-	avg(total)&gt;5
+	avg(total)>5
 ORDER BY
-	BillingCity</sql><sql name="SQL 27">/*
+	BillingCity
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Grouping in SQL |What are the average Invoice totals Greater than $5.00 for cities starting with B?
 */
-
 SELECT
 	BillingCity,
 	round(avg(total),2)
@@ -454,14 +460,15 @@ WHERE
 GROUP BY
 	BillingCity
 HAVING
-	avg(total)&gt;5
+	avg(total)>5
 ORDER BY
-	BillingCity</sql><sql name="SQL 28">/*
+	BillingCity
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Grouping by more than one field at a time|What are the average invoice totals by billing country and city?
 */
-
 SELECT
 	BillingCountry,
 	BillingCity,
@@ -471,12 +478,13 @@ FROM
 GROUP BY
 	BillingCity,BillingCountry
 ORDER BY
-	BillingCountry</sql><sql name="SQL 29">/*
+	BillingCountry
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Subqueries |Gather data about all invoices that are less than this average?
 */
-
 SELECT
 	InvoiceDate,
 	BillingAddress,
@@ -485,15 +493,16 @@ SELECT
 FROM
 	Invoice
 WHERE
-	total&lt;
+	total<
 	(SELECT avg(total)FROM Invoice)
 ORDER BY
-	total DESC</sql><sql name="SQL 30">/*
+	total DESC
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Subqueries in the SELECT |How each city performing against the global average sales?
 */
-
 SELECT
 	BillingCity,
 	avg(total) AS [City Average],
@@ -503,11 +512,12 @@ FROM
 Group By
 	BillingCity
 ORDER BY
-	BillingCity</sql><sql name="SQL 31">/*
+	BillingCity
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Subqueries without Aggeregate Functions |Give us all invoices which raised after 09-01-2012?
-
 */
 SELECT
 	InvoiceDate,
@@ -516,17 +526,18 @@ SELECT
 FROM
 	Invoice
 WHERE
-	InvoiceDate&gt;
+	InvoiceDate >
 (SELECT
 	InvoiceDate
 FROM
 	Invoice
 WHERE
-	InvoiceId = 251)</sql><sql name="SQL 32">/*
+	InvoiceId = 251)
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Returning multiple values from a subquery
-
 */
 SELECT
 	InvoiceDate,
@@ -536,29 +547,29 @@ FROM
 	Invoice
 WHERE
 	InvoiceDate IN
-(SELECT
+ (SELECT
 	InvoiceDate
-FROM
+  FROM
 	Invoice
-WHERE
+  WHERE
 	InvoiceId in (251,252,254))
-</sql><sql name="SQL 33">/*
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Views
-
 */
-CREATE VIEW V_AvgTotal As
+ CREATE VIEW V_AvgTotal As
 SELECT
 	round(avg(total),2) AS [Average Total]
 FROM
-	Invoice</sql><sql name="SQL 34">/*
+	Invoice
+
+/*
 CREATED BY: YAGNESH VAGHASHIYA
 CREATED DATE: 02/03/2026
 DISCRIPTION: Subqueries and Distinct | Which trackes are not selling?
-
 */
-
 SELECT
 	TrackId,
 	Composer,
@@ -571,15 +582,19 @@ NOT IN
 (SELECT
 	DISTINCT
 	TrackId
-FROM
+ FROM
 	InvoiceLine
-ORDER BY
-	TrackId)</sql><sql name="Edit View V_AvgTotal">DROP VIEW IF EXISTS &quot;main&quot;.&quot;V_AvgTotal&quot;;
+ ORDER BY
+	TrackId)
+
+DROP VIEW IF EXISTS "main"."V_AvgTotal"
 CREATE VIEW V_AvgTotal As
 SELECT
 	avg(total) AS [Average Total]
 FROM
-	Invoice</sql><sql name="SQL 36">/*
+	Invoice
+
+/*
 CREATED BY:Yagnesh Vaghashiya
 CREATE DATE : 12/03/2026
 DISCRIPTION : Views and Joins
@@ -597,47 +612,44 @@ FROM
 INNER JOIN
 	Track t
 ON
-	il.Trackid = t.TrackId</sql><sql name="SQL 37">/*
+	il.Trackid = t.TrackId
+
+/*
 CREATED BY:Yagnesh Vaghashiya
 CREATE DATE : 12/03/2026
 DISCRIPTION : DML |Inserting Data
 */
 INSERT INTO 
 	Artist(Name)
-VALUES('Bob Marley')</sql><sql name="SQL 38">/*
+VALUES('Bob Marley')
+
+/*
 CREATED BY:Yagnesh Vaghashiya
 CREATE DATE : 12/03/2026
 DISCRIPTION : DML |Updating DATABASE
 */
-
 UPDATE
 	Artist
 SET	
 	Name = 'Damein Marley'
 WHERE
-	ArtistId = 276</sql><sql name="SQL 39">/*
+	ArtistId = 276
+
+/*
 CREATED BY:Yagnesh Vaghashiya
 CREATE DATE : 12/03/2026
 DISCRIPTION : DML |Deleting DATABASE
 */
-
 DELETE FROM
 	Artist
 WHERE
-	ArtistId = 276</sql><sql name="SQL 40*">/*
+	ArtistId = 276
 
+/*
 CREATED BY:Yagnesh Vaghashiya
-
 CREATE DATE : 12/03/2026
-
 DISCRIPTION : how many tracks in the WSDA music database do not have a composer listed?
-
 */
-
-
-
 SELECT COUNT(*)
-
 FROM Track
-
-WHERE Composer = 'unavailable';</sql><current_tab id="17"/></tab_sql></sqlb_project>
+WHERE Composer = 'unavailable'
